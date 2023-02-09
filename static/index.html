@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BunnyCDN Demo</title>
+  <style>
+    body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif
+    }
+
+    form input {
+      display: block;
+      margin-bottom: 20px
+    }
+
+    #videos img {
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: black;
+      height: 120px
+    }
+
+    #videos {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      min-height: 200px;
+    }
+
+    #videos .video {
+      box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+      height: fit-content
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+    }
+
+    .info .flex {
+      gap: 5px;
+    }
+
+    .flex.refresh :last-child {
+      margin-left: auto;
+      margin-right: 20px;
+    }
+
+    .flex button {
+      height: 20px
+    }
+
+    .info p {
+      font-size: 14px;
+      margin-top: 0px
+    }
+
+    .info h4 {
+      margin: 10px 0px;
+    }
+
+    #videos .info {
+      padding: 0px 10px;
+      margin: 5px 0px 15px 0px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 6;
+      /* padding-top: 50px; */
+    }
+
+    .iframeWrapper {
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="show" style="display: none">
+      <div class="overlay" @click="open = null" v-if="open">
+        <div class="iframeWrapper">
+          <iframe :src="`https://iframe.mediadelivery.net/embed/${open.videoLibraryId}/${open.guid}?autoplay=true`"
+            loading="lazy" style="border: none; height: 100%; width: 100%;"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowfullscreen="true"></iframe>
+        </div>
+        <div class="nav">
+          <button @click="open = null">Close</button>
+        </div>
+      </div>
+      <h1>BunnyCDN-Stream</h1>
+      <h3>Password</h3>
+      <input v-model="password" placeholder="Password" name="password" type="password" required>
+      <h3>Upload your video!</h3>
+      <form @submit.prevent="submit" enctype="multipart/form-data" method="POST" action="/videos/upload">
+        <input v-model="password" placeholder="Password" name="password" type="password" required style="display: none">
+        <input placeholder="Title" name="title" type="string" required>
+        <input placeholder="File" name="file" accept="video/*" type="file" required>
+        <button v-if="uploadProgress < 0">Upload</button>
+        <button disabled v-else>Uploading {{uploadProgress}}%</button>
+        <p v-if="error.length > 0" class="error">{{error}}</p>
+      </form>
+      <div class="flex refresh">
+        <h3>Uploaded videos</h3>
+        <button @click="list">Refresh</button>
+      </div>
+
+      <div id="videos">
+        <div v-for="file in videos" class="video">
+          <img @mouseenter="hovering[file.guid] = true" @mouseleave="hovering[file.guid] = false"
+            onerror="this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII='"
+            :src="hovering[file.guid] ? this.base + `/${file.guid}/preview.webp` : this.base + `/${file.guid}/${file.thumbnailFileName}?${file.status}`">
+          <div class="info">
+            <h4>{{file.title}}</h4>
+            <p>
+              Status: {{file.status}} - {{['Uploading', 'Processing', 'Encoding', 'Encoding',
+              'Uploaded'][file.status]}}<br>
+              Encode progress: {{file.encodeProgress}}
+            </p>
+            <div class="flex">
+              <button :disabled="file.status < 4" @click="() => openVideo(file)">
+                View
+              </button>
+              <button :disabled="file.status < 4" @click="() => shareVideo(file)">
+                Open
+              </button>
+              <button @click="() => deleteVideo(file.guid)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        videos: [],
+        base: 'PULL_URL',
+        password: '',
+        uploadProgress: -1,
+        open: null,
+        error: "",
+        hovering: {}
+      }
+    },
+    methods: {
+      async openVideo(file) {
+        this.open = file;
+      },
+      async shareVideo(file) {
+        window.open(`https://video.bunnycdn.com/play/${file.videoLibraryId}/${file.guid}`)
+      },
+      async deleteVideo(guid) {
+        await axios.delete("/videos/delete/" + guid)
+        await this.list()
+      },
+      async list() {
+        await axios.get("/videos/list").then(res => {
+          this.videos = res.data;
+        });
+      },
+      async submit() {
+        this.error = ""
+        const formData = new FormData(document.querySelector("form"))
+        await axios.post("/videos/upload", formData, {
+          onUploadProgress: (progressEvent) => {
+            this.uploadProgress = Math.round(progressEvent.progress * 100)
+          }
+        }).catch(err => {
+          this.error = err.response.data
+          // this.error = (err.response.data)
+        })
+
+        this.uploadProgress = -1;
+      }
+    },
+    mounted() {
+      this.list();
+      setInterval(this.list, 1000);
+      document.querySelector(".show").style.display = "block"
+    }
+  }).mount('#app')
+</script>
+
+</html>

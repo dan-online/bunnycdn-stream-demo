@@ -327,10 +327,10 @@ fastify-tsconfig@^1.0.1:
   resolved "https://registry.yarnpkg.com/fastify-tsconfig/-/fastify-tsconfig-1.0.1.tgz#ec90e45fa8aa72b81178757bd5940c7875037639"
   integrity sha512-BXkTG3JYcjJb3xX5R5FcE9ciscV/h7YtmnkiSaNAONd1g6ooMSN/4GWfhA8hnS6SRZFYBBxsn8719Mj9lbCOtA==
 
-fastify@^4.12.0:
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-4.12.0.tgz#e5330215d95702336693b38b2e66d34ee8300d3e"
-  integrity sha512-Hh2GCsOCqnOuewWSvqXlpq5V/9VA+/JkVoooQWUhrU6gryO9+/UGOoF/dprGcKSDxkM/9TkMXSffYp8eA/YhYQ==
+fastify@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-4.13.0.tgz#5726d4c63acae1b5e34c7643e233a0be8169009a"
+  integrity sha512-p9ibdFWH3pZ7KPgmfHPKGUy2W4EWU2TEpwlcu58w4CwGyU3ARFfh2kwq6zpZ5W2ZGVbufi4tZbqHIHAlX/9Z/A==
   dependencies:
     "@fastify/ajv-compiler" "^3.3.1"
     "@fastify/error" "^3.0.0"
@@ -733,15 +733,10 @@ safe-stable-stringify@^2.3.1:
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.4.0.tgz#95fadb1bcf8057a1363e11052122f5da36a69215"
   integrity sha512-eehKHKpab6E741ud7ZIMcXhKcP6TSIezPkNZhy5U8xC6+VvrRdUA2tMgxGxaGl4cz7c2Ew5+mg5+wNB16KQqrA==
 
-secure-json-parse@^2.4.0:
+secure-json-parse@^2.4.0, secure-json-parse@^2.5.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/secure-json-parse/-/secure-json-parse-2.7.0.tgz#5a5f9cd6ae47df23dba3151edd06855d47e09862"
   integrity sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==
-
-secure-json-parse@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/secure-json-parse/-/secure-json-parse-2.5.0.tgz#f929829df2adc7ccfb53703569894d051493a6ac"
-  integrity sha512-ZQruFgZnIWH+WyO9t5rWt4ZEGqCKPwhiw+YbzTwpmT9elgLrLcfuyUiSnwwjUiVy9r4VM3urtbNF1xmEh9IL2w==
 
 semver@^5.7.1:
   version "5.7.1"

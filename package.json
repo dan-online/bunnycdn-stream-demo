@@ -1,7 +1,6 @@
 {
-  "name": "fastify-typescript-starter",
-  "version": "4.1.0",
-  "description": "Fastify TypeScript starter repository",
+  "name": "bunnycdn-stream-demo",
+  "version": "1.0.0",
   "scripts": {
     "watch": "tsc --watch --preserveWatchOutput --pretty",
     "dev": "cross-env NODE_ENV=development nodemon",
@@ -9,7 +8,6 @@
     "build": "rimraf dist && tsc",
     "start": "node dist/index.js"
   },
-  "author": "Matschik <mathieu.schimmerling@protonmail.com>",
   "license": "MIT",
   "dependencies": {
     "@fastify/multipart": "^7.4.0",

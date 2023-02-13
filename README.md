@@ -1,13 +1,14 @@
-# Fastify & Typescript App
+# BunnyCDN Stream Demo
 
-> Fastify & TypeScript starter repository.
+> Forked and heavily edited from [matschik/fastify-typescript-starter](https://github.com/matschik/fastify-typescript-starter)
 
 ## Installation
 
 ```bash
-$ git clone https://github.com/Matschik/fastify-typescript-starter.git
-$ cd fastify-typescript-starter
+$ git clone https://github.com/dan-online/bunnycdn-stream-demo
+$ cd bunnycdn-stream-demo
 $ yarn install
+$ yarn build && yarn start
 ```
 
 ## Usage

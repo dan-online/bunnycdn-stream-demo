@@ -32,11 +32,38 @@ export default async function videoController(fastify: FastifyInstance) {
   );
 
   fastify.delete("/delete/:id", async (req, res) => {
-    const data = await bunny.deleteVideo((req.params as { id: string }).id);
+    const { password } = req.query as { password: string };
+    const { id } = req.params as { id: string };
+
+    if (password !== secret) {
+      return res.status(403).send("Incorrect password");
+    }
+
+    if (!id) {
+      return res.status(400).send("Malformed request");
+    }
+
+    const data = await bunny.deleteVideo(id);
     return res.send(data.message);
   });
 
   fastify.get("/list", async (_req, res) => {
     res.send(JSON.stringify(await bunny.listAllVideos()));
+  });
+
+  fastify.post("/tus", async (req, res) => {
+
+    const { password, title } = req.body as { password: string, title: string };
+
+    if (password !== secret) {
+      return res.status(403).send("Incorrect password");
+    }
+
+    if (!title) {
+      return res.status(400).send("Malformed request");
+    }
+
+    const data = await bunny.createDirectUpload({ title }, new Date(Date.now() + 60000))
+    return res.send(data);
   });
 }

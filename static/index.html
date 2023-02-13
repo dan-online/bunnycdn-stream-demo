@@ -5,96 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BunnyCDN Demo</title>
-  <style>
-    body {
-      font-family: Verdana, Geneva, Tahoma, sans-serif
-    }
-
-    form input {
-      display: block;
-      margin-bottom: 20px
-    }
-
-    #videos img {
-      aspect-ratio: 16 / 9;
-      object-fit: contain;
-      background: black;
-      height: 120px
-    }
-
-    #videos {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      min-height: 200px;
-    }
-
-    #videos .video {
-      box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-      height: fit-content
-    }
-
-    .flex {
-      display: flex;
-      align-items: center;
-    }
-
-    .info .flex {
-      gap: 5px;
-    }
-
-    .flex.refresh :last-child {
-      margin-left: auto;
-      margin-right: 20px;
-    }
-
-    .flex button {
-      height: 20px
-    }
-
-    .info p {
-      font-size: 14px;
-      margin-top: 0px
-    }
-
-    .info h4 {
-      margin: 10px 0px;
-    }
-
-    #videos .info {
-      padding: 0px 10px;
-      margin: 5px 0px 15px 0px;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 6;
-      /* padding-top: 50px; */
-    }
-
-    .iframeWrapper {
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 80%;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .error {
-      color: red
-    }
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
@@ -115,13 +26,14 @@
       <h3>Password</h3>
       <input v-model="password" placeholder="Password" name="password" type="password" required>
       <h3>Upload your video!</h3>
-      <form @submit.prevent="submit" enctype="multipart/form-data" method="POST" action="/videos/upload">
+      <form ref="form" @submit.prevent="submit" enctype="multipart/form-data" method="POST" action="/videos/upload">
         <input v-model="password" placeholder="Password" name="password" type="password" required style="display: none">
-        <input placeholder="Title" name="title" type="string" required>
-        <input placeholder="File" name="file" accept="video/*" type="file" required>
-        <button v-if="uploadProgress < 0">Upload</button>
-        <button disabled v-else>Uploading {{uploadProgress}}%</button>
+        <input v-model="title" placeholder="Title" name="title" type="string" required>
+        <input ref="file" placeholder="File" name="file" accept="video/*" type="file" required>
+        <button :disabled="uploadProgress > -1">Upload</button>
         <p v-if="error.length > 0" class="error">{{error}}</p>
+        <button :disabled="uploadProgress > -1" @click.prevent="tus" class="tus">Tus Upload</button>
+        <p v-if="uploadProgress > -1">Upload progress: {{uploadProgress}}%</p>
       </form>
       <div class="flex refresh">
         <h3>Uploaded videos</h3>
@@ -158,6 +70,7 @@
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@3.1.0/dist/tus.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
   const { createApp } = Vue
@@ -171,6 +84,7 @@
         uploadProgress: -1,
         open: null,
         error: "",
+        title: "",
         hovering: {}
       }
     },
@@ -182,8 +96,12 @@
         window.open(`https://video.bunnycdn.com/play/${file.videoLibraryId}/${file.guid}`)
       },
       async deleteVideo(guid) {
-        await axios.delete("/videos/delete/" + guid)
-        await this.list()
+        this.error = ""
+        await axios.delete("/videos/delete/" + guid + "?password=" + this.password).catch(err => {
+          this.error = err.response.data
+        }).then(res => {
+          return this.list()
+        })
       },
       async list() {
         await axios.get("/videos/list").then(res => {
@@ -192,17 +110,50 @@
       },
       async submit() {
         this.error = ""
-        const formData = new FormData(document.querySelector("form"))
+        const formData = new FormData(this.$refs.form)
         await axios.post("/videos/upload", formData, {
           onUploadProgress: (progressEvent) => {
             this.uploadProgress = Math.round(progressEvent.progress * 100)
           }
         }).catch(err => {
           this.error = err.response.data
-          // this.error = (err.response.data)
+          this.error = (err.response.data)
         })
 
         this.uploadProgress = -1;
+      },
+      async tus() {
+        this.error = ""
+        this.uploadProgress = 0;
+        const { data: res } = await axios.post("/videos/tus", { title: this.title, password: this.password })
+
+        const file = this.$refs.file.files[0];
+
+        const upload = new tus.Upload(file, {
+          endpoint: "https://video.bunnycdn.com/tusupload",
+          retryDelays: [0, 3000, 5000, 10000, 20000, 60000, 60000],
+          headers: res.headers,
+          metadata: {
+            ...res.metadata,
+            filetype: file.type
+          },
+          onError: function (error) {
+            console.error(error)
+          },
+          onProgress: (bytesUploaded, bytesTotal) => {
+            this.uploadProgress = Math.round(bytesUploaded / bytesTotal * 100)
+          },
+          onSuccess: () => {
+            this.uploadProgress = -1;
+          }
+        })
+
+        upload.findPreviousUploads().then(function (previousUploads) {
+          if (previousUploads.length) {
+            upload.resumeFromPreviousUpload(previousUploads[0])
+          }
+          upload.start()
+        })
       }
     },
     mounted() {

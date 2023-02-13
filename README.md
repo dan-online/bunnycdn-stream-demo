@@ -2,6 +2,8 @@
 
 > Forked and heavily edited from [matschik/fastify-typescript-starter](https://github.com/matschik/fastify-typescript-starter)
 
+Read the article for this repo [here](https://medium.com/@dancodesonline/how-to-level-up-your-nodejs-application-with-the-bunnycdn-stream-api-7d0a9d806aba)
+
 ## Installation
 
 ```bash

@@ -40,10 +40,10 @@
   dependencies:
     fast-json-stringify "^5.0.0"
 
-"@fastify/multipart@^7.4.1":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@fastify/multipart/-/multipart-7.4.1.tgz#c58287240fec7560931df1f5daf4adf6d3ad1f06"
-  integrity sha512-PgBJIg/1krx1nWIXGZSUFQMPHXeFv559TmpaswzmNkK6V/yn1xi4nkATqBetv7s5XbXhxzc75uaJgXWdUefxvQ==
+"@fastify/multipart@^7.4.2":
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@fastify/multipart/-/multipart-7.4.2.tgz#59bfa3dd4a208e2168a0dac2632270a807981556"
+  integrity sha512-jrPoQ8I2Mpd92vVR/XE1DKBa+h7EiXaLL5TvHIUTtHiF7/0FChjP7spBQ9ROItpNrNKdKGB8uSJHmPIjRK/24A==
   dependencies:
     "@fastify/busboy" "^1.0.0"
     "@fastify/deepmerge" "^1.0.0"
@@ -385,10 +385,10 @@ fastify-tsconfig@^1.0.1:
   resolved "https://registry.yarnpkg.com/fastify-tsconfig/-/fastify-tsconfig-1.0.1.tgz#ec90e45fa8aa72b81178757bd5940c7875037639"
   integrity sha512-BXkTG3JYcjJb3xX5R5FcE9ciscV/h7YtmnkiSaNAONd1g6ooMSN/4GWfhA8hnS6SRZFYBBxsn8719Mj9lbCOtA==
 
-fastify@^4.14.0:
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-4.14.0.tgz#05e388e93b7014c1381a44c021c4c9cfcba9d984"
-  integrity sha512-oJSHlM/XbGdJpe2MKMJBsrvrkPDrHDZlAB9qzuUJIpnBtpDE394bzdFsH4KnsUI1e8zxzFl+GNBEXC64N/IPuw==
+fastify@^4.14.1:
+  version "4.14.1"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-4.14.1.tgz#be1b27a13910c74ecb8625de4fa42feab9703259"
+  integrity sha512-yjrDeXe77j9gRlSV2UJry8mcFWbD0NQ5JYjnPi4tkFjHZVaG3/BD5wxOmRzGnHPC0YvaBJ0XWrIfFPl2IHRa1w==
   dependencies:
     "@fastify/ajv-compiler" "^3.5.0"
     "@fastify/error" "^3.0.0"

@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@fastify/multipart": "^7.5.0",
-    "@fastify/static": "^6.9.0",
+    "@fastify/static": "^6.10.0",
     "bunnycdn-stream": "^2.1.4",
     "dotenv": "^16.0.3",
     "fastify": "^4.15.0"

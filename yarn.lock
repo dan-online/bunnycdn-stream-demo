@@ -40,10 +40,10 @@
   dependencies:
     fast-json-stringify "^5.0.0"
 
-"@fastify/multipart@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@fastify/multipart/-/multipart-7.5.0.tgz#cc373ed1d2ffbf1397b3b6f8841860181403294c"
-  integrity sha512-cAQzz+vVRaNomTppActeqA3xZstF18WK9gjwCMAkoU6xKFljsnKewdGw2RkcYAaiWgFzGBQUD8owSKPFgzhJAA==
+"@fastify/multipart@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@fastify/multipart/-/multipart-7.6.0.tgz#8b7baf00945509aac54d249424768c7c520ee741"
+  integrity sha512-mQoz0SMxk1WAYLYvQypoj3GYhCbmhnFl2LdleTzKQ4HgPfhVcMT014uln2wgzRh2y+gL74b/+j0mMVgvOKpqpQ==
   dependencies:
     "@fastify/busboy" "^1.0.0"
     "@fastify/deepmerge" "^1.0.0"
@@ -65,10 +65,10 @@
     http-errors "2.0.0"
     mime "^3.0.0"
 
-"@fastify/static@^6.10.0":
-  version "6.10.0"
-  resolved "https://registry.yarnpkg.com/@fastify/static/-/static-6.10.0.tgz#cdb6a5ddcc3ea8691c79aad0c846bc986a4bc721"
-  integrity sha512-TGruNm6ZabkQz2oRNoarPnY2BvS9i9DNf8Nn1aDcZp+WjOQRPCq0Wy2ko78yGB5JHytdCWoHpprc128QtLl8hw==
+"@fastify/static@^6.10.1":
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/@fastify/static/-/static-6.10.1.tgz#605e6758b7536089581bb59dbb096d80997327b6"
+  integrity sha512-DNnG+5QenQcTQw37qk0/191STThnN6SbU+2XMpWtpYR3gQUfUvMax14jTT/jqNINNbCkQJaKMnPtpFPKo4/68g==
   dependencies:
     "@fastify/accept-negotiator" "^1.0.0"
     "@fastify/send" "^2.0.0"

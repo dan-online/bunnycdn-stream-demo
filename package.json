@@ -10,11 +10,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fastify/multipart": "^7.6.0",
-    "@fastify/static": "^6.10.1",
-    "bunnycdn-stream": "^2.2.0",
-    "dotenv": "^16.0.3",
-    "fastify": "^4.16.3"
+    "@fastify/multipart": "^7.7.3",
+    "@fastify/static": "^6.12.0",
+    "bunnycdn-stream": "^2.2.3",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.26.2"
   },
   "devDependencies": {
     "@types/node": "latest",

@@ -25,11 +25,11 @@ export default async function videoController(fastify: FastifyInstance) {
 
       const vid = await bunny.createAndUploadVideo(
         file as unknown as ReadStream,
-        { title: title.value }
+        { title: title.value },
       );
 
       return res.send(JSON.stringify(vid));
-    }
+    },
   );
 
   fastify.delete("/delete/:id", async (req, res) => {
@@ -65,7 +65,7 @@ export default async function videoController(fastify: FastifyInstance) {
 
     const data = await bunny.createDirectUpload(
       { title },
-      new Date(Date.now() + 60000)
+      new Date(Date.now() + 60000),
     );
     return res.send(data);
   });

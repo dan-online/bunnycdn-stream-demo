@@ -15,8 +15,8 @@ export default async function indexController(fastify: FastifyInstance) {
         indexHtmlContent
           .toString()
           .split("PULL_URL")
-          .join(env.BUNNY_PULL_URL || "")
+          .join(env.BUNNY_PULL_URL || ""),
       );
-    }
+    },
   );
 }

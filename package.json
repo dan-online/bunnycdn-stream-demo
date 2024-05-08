@@ -12,7 +12,7 @@
   "dependencies": {
     "@fastify/multipart": "^7.6.0",
     "@fastify/static": "^7.0.4",
-    "bunnycdn-stream": "^2.2.0",
+    "bunnycdn-stream": "^2.4.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.16.3"
   },

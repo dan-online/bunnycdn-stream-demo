@@ -2,8 +2,9 @@ import { MultipartValue } from "@fastify/multipart";
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import { ReadStream } from "fs";
 import { bunny } from "../bunny";
+import { env } from "../env";
 
-const secret = "123";
+const secret = env.SECRET || "123";
 
 export default async function videoController(fastify: FastifyInstance) {
   fastify.post(

@@ -53,8 +53,7 @@ export default async function videoController(fastify: FastifyInstance) {
   });
 
   fastify.post("/tus", async (req, res) => {
-
-    const { password, title } = req.body as { password: string, title: string };
+    const { password, title } = req.body as { password: string; title: string };
 
     if (password !== secret) {
       return res.status(403).send("Incorrect password");
@@ -64,7 +63,10 @@ export default async function videoController(fastify: FastifyInstance) {
       return res.status(400).send("Malformed request");
     }
 
-    const data = await bunny.createDirectUpload({ title }, new Date(Date.now() + 60000))
+    const data = await bunny.createDirectUpload(
+      { title },
+      new Date(Date.now() + 60000)
+    );
     return res.send(data);
   });
 }

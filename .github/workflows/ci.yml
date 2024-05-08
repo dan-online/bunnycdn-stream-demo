@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+      - name: Setup Node
+        uses: josh-development/.github/setup-node@main
+      - name: Format
+        run: yarn prettier --check "src/**/*.ts"
+      - name: Build
+        run: yarn build

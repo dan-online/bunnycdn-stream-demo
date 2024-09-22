@@ -45,10 +45,10 @@
   dependencies:
     fast-deep-equal "^3.1.3"
 
-"@fastify/multipart@^9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@fastify/multipart/-/multipart-9.0.0.tgz#427a1ce8fac18d9629e49e72bcef1775708e997d"
-  integrity sha512-B/rzOl1wmkj4LddH2i+zR8Gke8ZX1J8D7n4uJeis5VdIa7OR9Ys/TzUxI0/h1SF9ubHlNhBP+eO/FwnftarP9w==
+"@fastify/multipart@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@fastify/multipart/-/multipart-9.0.1.tgz#2d003776c6ee8f787ceb8a4bb77a4256727b3f34"
+  integrity sha512-vt2gOCw/O4EwpN4KlLVJxth4iQlDf7T5ggw2Db2C+UbO2WJBG7y0jEBvu/HT6JIW/lBYaqrrUy9MmTpCKgXEpw==
   dependencies:
     "@fastify/busboy" "^3.0.0"
     "@fastify/deepmerge" "^2.0.0"

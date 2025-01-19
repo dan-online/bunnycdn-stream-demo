@@ -441,10 +441,10 @@ fastify-plugin@^5.0.0:
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-5.0.1.tgz#82d44e6fe34d1420bb5a4f7bee434d501e41939f"
   integrity sha512-HCxs+YnRaWzCl+cWRYFnHmeRFyR5GVnJTAaCJQiYzQSDwK9MgJdyAsuL3nh0EWRCYMgQ5MeziymvmAhUHYHDUQ==
 
-fastify-tsconfig@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/fastify-tsconfig/-/fastify-tsconfig-2.0.0.tgz#960367cdb368562948d446dd14f67bed45a92085"
-  integrity sha512-pvYwdtbZUJr/aTD7ZE0rGlvtYpx7IThHKVLBoqCKmT3FJpwm23XA2+PDmq8ZzfqqG4ajpyrHd5bkIixcIFjPhQ==
+fastify-tsconfig@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fastify-tsconfig/-/fastify-tsconfig-3.0.0.tgz#1fd130dc530a8b0a35ecf3cc2480220a97e53d57"
+  integrity sha512-TxFM9+MUUM2Ub6chZbP5sPNUFaPWA86kHU0VRd4o9OP6PBP92cj9c4/IEsnLoVHcLgrgXf2GUXWUzkJAO9iKFQ==
 
 fastify@^5.2.1:
   version "5.2.1"

@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fastify/multipart": "^9.3.0",
+    "@fastify/multipart": "^9.4.0",
     "@fastify/static": "^9.0.0",
     "bunnycdn-stream": "^2.5.5",
     "dotenv": "^17.2.3",

@@ -14,7 +14,7 @@
     "@fastify/static": "^9.0.0",
     "bunnycdn-stream": "^2.5.5",
     "dotenv": "^17.2.3",
-    "fastify": "^5.7.1"
+    "fastify": "^5.7.2"
   },
   "devDependencies": {
     "@types/node": "latest",

@@ -85,10 +85,10 @@
     http-errors "^2.0.0"
     mime "^3"
 
-"@fastify/static@^9.1.0":
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/@fastify/static/-/static-9.1.0.tgz#209445724896a0e9c44916e2faf532d1ec61cff1"
-  integrity sha512-EPRNQYqEYEYTK8yyGbcM0iHpyJaupb94bey5O6iCQfLTADr02kaZU+qeHSdd9H9TiMwTBVkrMa59V8CMbn3avQ==
+"@fastify/static@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@fastify/static/-/static-9.1.1.tgz#e70fb7a31f9a50a0002e6a0de4c1a14473707acc"
+  integrity sha512-LHxFea3qdwe0Pbbkh/yux7/k6nFNLGTNcbLKVYgmRDB6LdDE/8TFSO7qWZ0IzM/nF6iwR8W03oFlwe4v79R1Ow==
   dependencies:
     "@fastify/accept-negotiator" "^2.0.0"
     "@fastify/send" "^4.0.0"
@@ -267,10 +267,10 @@ depd@2.0.0:
   resolved "https://registry.yarnpkg.com/depd/-/depd-2.0.0.tgz#b696163cc757560d09cf22cc8fad1571b79e76df"
   integrity sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==
 
-dotenv@^17.4.1:
-  version "17.4.1"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.4.1.tgz#d8e2179fe287365ef3aecb9459668454168eda88"
-  integrity sha512-k8DaKGP6r1G30Lx8V4+pCsLzKr8vLmV2paqEj1Y55GdAgJuIqpRp5FfajGF8KtwMxCz9qJc6wUIJnm053d/WCw==
+dotenv@^17.4.2:
+  version "17.4.2"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.4.2.tgz#c07e54a746e11eba021dd9e1047ced5afdc1c034"
+  integrity sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -327,10 +327,10 @@ fastify-tsconfig@^3.0.0:
   resolved "https://registry.yarnpkg.com/fastify-tsconfig/-/fastify-tsconfig-3.0.0.tgz#1fd130dc530a8b0a35ecf3cc2480220a97e53d57"
   integrity sha512-TxFM9+MUUM2Ub6chZbP5sPNUFaPWA86kHU0VRd4o9OP6PBP92cj9c4/IEsnLoVHcLgrgXf2GUXWUzkJAO9iKFQ==
 
-fastify@^5.8.4:
-  version "5.8.4"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-5.8.4.tgz#9ad9ebeea57980cf8722b5c44ca27ea9255cf2d5"
-  integrity sha512-sa42J1xylbBAYUWALSBoyXKPDUvM3OoNOibIefA+Oha57FryXKKCZarA1iDntOCWp3O35voZLuDg2mdODXtPzQ==
+fastify@^5.8.5:
+  version "5.8.5"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-5.8.5.tgz#c452224295e0ca550bcd0efc3f7d3e90e9c11955"
+  integrity sha512-Yqptv59pQzPgQUSIm87hMqHJmdkb1+GPxdE6vW6FRyVE9G86mt7rOghitiU4JHRaTyDUk9pfeKmDeu70lAwM4Q==
   dependencies:
     "@fastify/ajv-compiler" "^4.0.5"
     "@fastify/error" "^4.0.0"
